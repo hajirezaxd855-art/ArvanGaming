@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PixelWorld</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="top">
+    <div class="topRow">
+      <button class="menuBtn" onclick="toggleDrawer()">≡</button>
+      <div class="title">PixelWorld</div>
+      <button class="iconBtn" onclick="openTab('search')">🔎</button>
+    </div>
+
+    <div class="banner">
+      <div class="bannerText">
+        به کانال تلگرام سرور بپیوند!
+      </div>
+      <a class="bannerBtn" id="tgLink" href="#" target="_blank">ورود</a>
+    </div>
+
+    <div class="tabs">
+      <button id="tab-pages" class="tab active" onclick="openTab('pages')">صفحه‌ها</button>
+      <button id="tab-status" class="tab" onclick="openTab('status')">وضعیت</button>
+      <button id="tab-news" class="tab" onclick="openTab('news')">اخبار</button>
+      <button id="tab-tutorials" class="tab" onclick="openTab('tutorials')">آموزشات</button>
+      <button id="tab-station" class="tab" onclick="openTab('station')">ایستگاه</button>
+    </div>
+  </header>
+
+  <!-- Drawer -->
+  <aside id="drawer" class="drawer hidden" onclick="toggleDrawer(true)">
+    <div class="drawerPanel" onclick="event.stopPropagation()">
+      <div class="drawerTitle">منو</div>
+      <a href="#" onclick="openTab('pages'); toggleDrawer(true)">خانه</a>
+      <a href="#" onclick="openTab('news'); toggleDrawer(true)">اخبار</a>
+      <a href="#" onclick="openTab('tutorials'); toggleDrawer(true)">آموزشات</a>
+      <a href="#" onclick="openTab('station'); toggleDrawer(true)">ایستگاه</a>
+      <a href="#" onclick="openTab('status'); toggleDrawer(true)">وضعیت سرور</a>
+    </div>
+  </aside>
+
+  <main class="wrap">
+
+    <!-- Pages -->
+    <section id="pages" class="card">
+      <h2>صفحه‌ها</h2>
+      <div class="grid">
+        <button class="tile red" onclick="openTab('shop')">فروشگاه</button>
+        <button class="tile blue" onclick="openTab('tutorials')">آموزشات</button>
+        <button class="tile green" onclick="openTab('station')">ایستگاه‌ها</button>
+        <button class="tile purple" onclick="openTab('news')">اخبار</button>
+      </div>
+    </section>
+
+    <!-- Shop (نمونه نمایشی) -->
+    <section id="shop" class="card hidden">
+      <h2>فروشگاه</h2>
+      <div class="muted">این بخش در GitHub Pages فقط نمایشی است مگر بک‌اند اضافه شود.</div>
+      <div class="list" id="shopList"></div>
+    </section>
+
+    <!-- Status -->
+    <section id="status" class="card hidden">
+      <h2>وضعیت سرور</h2>
+      <div id="statusBox" class="statusBox">در حال دریافت...</div>
+
+      <div class="rowBtns">
+        <button onclick="copyIP()">کپی IP</button>
+        <button class="ghost" onclick="openLink('joinUrl')">ورود (لینک)</button>
+      </div>
+
+      <div class="muted">
+        وضعیت از فایل <code>data/status.json</code> می‌آید. هر وقت خواستی دستی آپدیتش کن.
+      </div>
+    </section>
+
+    <!-- News -->
+    <section id="news" class="card hidden">
+      <h2>اخبار</h2>
+      <div id="newsList" class="list">در حال دریافت...</div>
+    </section>
+
+    <!-- Tutorials -->
+    <section id="tutorials" class="card hidden">
+      <h2>آموزشات</h2>
+      <input id="tSearch" class="input" placeholder="جستجو آموزش..." oninput="renderTutorials()"/>
+      <div id="tutorialList" class="list">در حال دریافت...</div>
+    </section>
+
+    <!-- Search -->
+    <section id="search" class="card hidden">
+      <h2>جستجو</h2>
+      <input id="q" class="input" placeholder="متن را وارد کن..." oninput="runSearch()"/>
+      <div class="muted">در اخبار و آموزشات جستجو می‌کند.</div>
+      <div id="searchResult" class="list"></div>
+    </section>
+
+    <!-- Station -->
+    <section id="station" class="card hidden">
+      <h2>ایستگاه</h2>
+
+      <div class="grid2">
+        <div class="subcard">
+          <h3>ایستگاه پلیس</h3>
+          <div class="muted">ثبت گزارش بازیکن/باگ</div>
+          <button onclick="openLink('reportUrl')">ثبت گزارش</button>
+        </div>
+
+        <div class="subcard">
+          <h3>ایستگاه هدایا</h3>
+          <div class="muted">ثبت کد هدیه (بدون بک‌اند امن نیست)</div>
+          <button onclick="openLink('giftUrl')">ثبت کد</button>
+        </div>
+      </div>
+
+      <div class="muted">
+        پیشنهاد: برای گزارش و کد هدیه از Google Form/Telegram استفاده کن تا بدون هاست هم کار کند.
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
